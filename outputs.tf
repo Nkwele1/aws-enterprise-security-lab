@@ -39,3 +39,19 @@ output "iam_role_name" {
   value       = aws_iam_role.ec2_role.name
   description = "IAM role attached to EC2 instance"
 }
+
+#Phase 3
+output "cloudtrail_bucket" {
+  value       = aws_s3_bucket.cloudtrail_logs.bucket
+  description = "S3 bucket storing CloudTrail audit logs"
+}
+
+output "cloudtrail_log_group" {
+  value       = aws_cloudwatch_log_group.cloudtrail.name
+  description = "CloudWatch log group receiving real time CloudTrail events"
+}
+
+output "cloudtrail_name" {
+  value       = aws_cloudtrail.main.name
+  description = "CloudTrail trail name"
+}
