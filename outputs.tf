@@ -1,3 +1,4 @@
+#Phase 1
 output "vpc_id" {
   value       = aws_vpc.main.id
   description = "VPC ID"
@@ -21,4 +22,20 @@ output "public_sg_id" {
 output "private_sg_id" {
   value       = aws_security_group.private.id
   description = "Private security group ID"
+}
+
+#Phase 2
+output "ec2_instance_id" {
+  value       = aws_instance.private_instance.id
+  description = "EC2 instance ID"
+}
+
+output "ec2_private_ip" {
+  value       = aws_instance.private_instance.private_ip
+  description = "Private IP address of EC2 instance"
+}
+
+output "iam_role_name" {
+  value       = aws_iam_role.ec2_role.name
+  description = "IAM role attached to EC2 instance"
 }
