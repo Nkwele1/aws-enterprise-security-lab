@@ -55,3 +55,14 @@ output "cloudtrail_name" {
   value       = aws_cloudtrail.main.name
   description = "CloudTrail trail name"
 }
+
+#Phase 4
+output "security_dashboard" {
+  value       = "https://${var.aws_region}.console.aws.amazon.com/cloudwatch/home?region=${var.aws_region}#dashboards:name=${aws_cloudwatch_dashboard.security.dashboard_name}"
+  description = "Direct link to the security monitoring dashboard"
+}
+
+output "alarms_count" {
+  value       = "4 security alarms configured with AI anomaly detection"
+  description = "Summary of configured alarms"
+}
