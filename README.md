@@ -50,7 +50,7 @@ attached via instance profile. The instance uses AWS Systems Manager for secure
 remote access with no SSH ports open. A Bash user data script automatically installs 
 and configures the CloudWatch agent on first boot with zero manual intervention.
 
-- IAM role with only 5 CloudWatch permissions — nothing more
+- IAM role with only 5 CloudWatch permissions - nothing more
 - SSM managed instance for keyless, portless remote access
 - EC2 instance with automated CloudWatch agent configuration via user data
 - No hardcoded credentials anywhere in the codebase
@@ -61,8 +61,8 @@ and configures the CloudWatch agent on first boot with zero manual intervention.
 
 **Explain like I'm 5:**
 Imagine every single thing that happens in your building gets written down in a 
-special notebook. Someone opened a door — written down. Someone changed a security 
-rule — written down. Someone logged in — written down. The notebook is stored in a 
+special notebook. Someone opened a door - written down. Someone changed a security 
+rule - written down. Someone logged in - written down. The notebook is stored in a 
 locked safe that nobody can tamper with. If someone tries to tear a page out you can 
 tell because each page has a special seal. This phase builds that notebook and safe 
 for your cloud environment.
@@ -86,11 +86,11 @@ real time for immediate visibility.
 Now that everything is being written in the notebook you need someone to actually 
 read it and raise the alarm when something suspicious happens. You hire four security 
 guards. Two of them are traditional guards who sound the alarm the moment they see 
-even one bad thing happen. The other two are smarter — they watch normal activity 
+even one bad thing happen. The other two are smarter - they watch normal activity 
 for a while, learn what normal looks like, and then raise the alarm when something 
 feels off even if it looks almost normal. Together they cover everything. When this 
 was built one of the alarms went off immediately because the master key was being 
-used to set things up — exactly as it should work.
+used to set things up - exactly as it should work.
 
 **What was built:**
 Built a security monitoring layer on top of CloudTrail using CloudWatch metric filters 
@@ -98,12 +98,12 @@ and alarms. Monitors four critical security events with a mix of fixed threshold
 machine learning anomaly detection alarms. A single pane of glass dashboard provides 
 real time visibility across all security metrics.
 
-During deployment the root account usage alarm immediately fired — demonstrating the 
+During deployment the root account usage alarm immediately fired - demonstrating the 
 monitoring system working exactly as designed in a real scenario.
 
 - Failed console login detection with ML anomaly detection baseline
 - Unauthorized API call detection with zero tolerance threshold
-- Root account usage alarm — any root login triggers immediate alert
+- Root account usage alarm - any root login triggers immediate alert
 - IAM policy change detection with ML anomaly detection baseline
 - CloudWatch dashboard with real time security posture visibility
 
@@ -173,17 +173,17 @@ merging.
 - **Automated security scanning:** tfsec runs on every code push
 
 ## Compliance Alignment
-- NIST 800-53 SC-7 — Boundary Protection
-- NIST 800-53 AC-3 — Access Enforcement
-- NIST 800-53 AC-6 — Least Privilege
-- NIST 800-53 AU-2 — Audit Events
-- NIST 800-53 AU-9 — Protection of Audit Information
-- NIST 800-53 SI-3 — Malicious Code Protection
+- NIST 800-53 SC-7 - Boundary Protection
+- NIST 800-53 AC-3 - Access Enforcement
+- NIST 800-53 AC-6 - Least Privilege
+- NIST 800-53 AU-2 - Audit Events
+- NIST 800-53 AU-9 - Protection of Audit Information
+- NIST 800-53 SI-3 - Malicious Code Protection
 - Zero Trust Architecture principles throughout
 
 ## Technologies Used
 - Terraform v1.15.2
-- Amazon Web Services — VPC, EC2, IAM, S3, CloudTrail, CloudWatch, ECS, ECR
+- Amazon Web Services - VPC, EC2, IAM, S3, CloudTrail, CloudWatch, ECS, ECR
 - AWS CLI
 - HCL (HashiCorp Configuration Language)
 - Docker / Nginx
@@ -192,7 +192,13 @@ merging.
 - Bash scripting
 
 ## Repository Structure
+<<<<<<< HEAD
 ```aws-enterprise-security-lab/
+=======
+
+```
+aws-enterprise-security-lab/
+>>>>>>> 1985235de44a74531c49d100cb7b125eb4d05a3c
 ├── main.tf              # VPC, subnets, internet gateway, route tables, security groups
 ├── variables.tf         # Input variables for region, project name, CIDRs
 ├── outputs.tf           # Output values displayed after deployment
@@ -247,12 +253,12 @@ Tear down when done:
 - Enterprise AWS network architecture and segmentation
 - IAM least privilege design and identity management
 - Infrastructure as Code with Terraform across 6 service domains:
-    (Networking — VPC, subnets, security groups, route tables
-    Identity and Access Management — IAM roles, policies, instance profiles
-    Compute — EC2 instances, AMI, user data scripts
-    Storage and Compliance — S3, CloudTrail, audit logging
-    Monitoring and Security — CloudWatch, metric filters, anomaly detection alarms
-    Container Orchestration — ECS, ECR, Fargate, Docker)
+    - (Networking - VPC, subnets, security groups, route tables
+    - Identity and Access Management - IAM roles, policies, instance profiles
+    - Compute - EC2 instances, AMI, user data scripts
+    - Storage and Compliance - S3, CloudTrail, audit logging
+    - Monitoring and Security - CloudWatch, metric filters, anomaly detection alarms
+    - Container Orchestration - ECS, ECR, Fargate, Docker)
 - EC2 deployment automation with user data scripting
 - S3 security hardening and compliance configuration
 - CloudTrail audit logging pipeline design
