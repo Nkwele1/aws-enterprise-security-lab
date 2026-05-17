@@ -194,7 +194,6 @@ merging.
 ## Repository Structure
 ```
 aws-enterprise-security-lab/
->>>>>>> 1985235de44a74531c49d100cb7b125eb4d05a3c
 ├── main.tf              # VPC, subnets, internet gateway, route tables, security groups
 ├── variables.tf         # Input variables for region, project name, CIDRs
 ├── outputs.tf           # Output values displayed after deployment
