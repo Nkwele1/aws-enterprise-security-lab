@@ -1,0 +1,100 @@
+# This workflow runs automatically on every push and pull request
+# It validates your Terraform code and scans for security issues
+# Think of it as automated code review for infrastructure
+
+name: Terraform CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+# Environment variables available to all jobs
+env:
+  TF_VERSION: "1.15.2"
+  AWS_REGION: "us-east-1"
+
+jobs:
+  terraform-validate:
+    name: Terraform Validate and Plan
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out your code onto the runner VM
+      # Without this the VM has no files to work with
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Install Terraform on the runner VM
+      # Uses the official HashiCorp action to install a specific version
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ env.TF_VERSION }}
+
+      # Step 3: Check formatting
+      # terraform fmt -check returns an error if any files are not
+      # properly formatted - enforces consistent code style
+      - name: Check Terraform formatting
+        run: terraform fmt -check -recursive
+        continue-on-error: true
+
+      # Step 4: Initialize Terraform
+      # Downloads the AWS provider and sets up the backend
+      # Uses dummy credentials since we're just validating not deploying
+      - name: Terraform Init
+        run: terraform init -backend=false
+        env:
+          AWS_ACCESS_KEY_ID: "dummy"
+          AWS_SECRET_ACCESS_KEY: "dummy"
+
+      # Step 5: Validate syntax
+      # Checks that all the HCL syntax is valid and references are correct
+      # Does not connect to AWS - purely local validation
+      - name: Terraform Validate
+        run: terraform validate
+
+      # Step 6: Security scan with tfsec
+      # tfsec scans your Terraform code for security misconfigurations
+      # Like a linter but specifically for security issues
+      # It checks against AWS security best practices automatically
+      - name: Run tfsec security scan
+        uses: aquasecurity/tfsec-action@v1.0.0
+        with:
+          soft_fail: true
+
+  terraform-plan:
+    name: Terraform Plan
+    runs-on: ubuntu-latest
+    needs: terraform-validate
+
+    # Only run plan on pull requests not on direct pushes to main
+    # This shows reviewers exactly what infrastructure changes would happen
+    if: github.event_name == 'pull_request'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ env.TF_VERSION }}
+
+      - name: Terraform Init
+        run: terraform init -backend=false
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ env.AWS_REGION }}
+
+      - name: Terraform Plan
+        run: terraform plan -no-color
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ env.AWS_REGION }}
+        continue-on-error: true
