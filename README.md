@@ -249,12 +249,12 @@ Tear down when done:
 - Enterprise AWS network architecture and segmentation
 - IAM least privilege design and identity management
 - Infrastructure as Code with Terraform across 6 service domains:
-    (Networking - VPC, subnets, security groups, route tables
-    Identity and Access Management - IAM roles, policies, instance profiles
-    Compute - EC2 instances, AMI, user data scripts
-    Storage and Compliance - S3, CloudTrail, audit logging
-    Monitoring and Security - CloudWatch, metric filters, anomaly detection alarms
-    Container Orchestration - ECS, ECR, Fargate, Docker)
+    - (Networking - VPC, subnets, security groups, route tables
+    - Identity and Access Management - IAM roles, policies, instance profiles
+    - Compute - EC2 instances, AMI, user data scripts
+    - Storage and Compliance - S3, CloudTrail, audit logging
+    - Monitoring and Security - CloudWatch, metric filters, anomaly detection alarms
+    - Container Orchestration - ECS, ECR, Fargate, Docker)
 - EC2 deployment automation with user data scripting
 - S3 security hardening and compliance configuration
 - CloudTrail audit logging pipeline design
