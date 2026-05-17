@@ -195,14 +195,14 @@ resource "aws_cloudwatch_dashboard" "security" {
         width  = 12
         height = 6
         properties = {
-          title   = "Failed Console Logins"
-          region  = var.aws_region
-          period  = 300
-          stat    = "Sum"
+          title  = "Failed Console Logins"
+          region = var.aws_region
+          period = 300
+          stat   = "Sum"
           metrics = [
             ["${var.project_name}/Security", "FailedConsoleLogins"]
           ]
-          view    = "timeSeries"
+          view = "timeSeries"
         }
       },
       {
@@ -212,14 +212,14 @@ resource "aws_cloudwatch_dashboard" "security" {
         width  = 12
         height = 6
         properties = {
-          title   = "Unauthorized API Calls"
-          region  = var.aws_region
-          period  = 300
-          stat    = "Sum"
+          title  = "Unauthorized API Calls"
+          region = var.aws_region
+          period = 300
+          stat   = "Sum"
           metrics = [
             ["${var.project_name}/Security", "UnauthorizedAPICalls"]
           ]
-          view    = "timeSeries"
+          view = "timeSeries"
         }
       },
       {
@@ -229,14 +229,14 @@ resource "aws_cloudwatch_dashboard" "security" {
         width  = 12
         height = 6
         properties = {
-          title   = "Root Account Usage"
-          region  = var.aws_region
-          period  = 300
-          stat    = "Sum"
+          title  = "Root Account Usage"
+          region = var.aws_region
+          period = 300
+          stat   = "Sum"
           metrics = [
             ["${var.project_name}/Security", "RootAccountUsage"]
           ]
-          view    = "timeSeries"
+          view = "timeSeries"
         }
       },
       {
@@ -246,14 +246,14 @@ resource "aws_cloudwatch_dashboard" "security" {
         width  = 12
         height = 6
         properties = {
-          title   = "IAM Policy Changes"
-          region  = var.aws_region
-          period  = 300
-          stat    = "Sum"
+          title  = "IAM Policy Changes"
+          region = var.aws_region
+          period = 300
+          stat   = "Sum"
           metrics = [
             ["${var.project_name}/Security", "IAMPolicyChanges"]
           ]
-          view    = "timeSeries"
+          view = "timeSeries"
         }
       },
       {
