@@ -192,6 +192,8 @@ merging.
 - Bash scripting
 
 ## Repository Structure
+
+```
 aws-enterprise-security-lab/
 ├── main.tf              # VPC, subnets, internet gateway, route tables, security groups
 ├── variables.tf         # Input variables for region, project name, CIDRs
@@ -205,7 +207,7 @@ aws-enterprise-security-lab/
 │   └── workflows/
 │       └── terraform.yml  # GitHub Actions CI/CD pipeline
 └── .gitignore           # Excludes state files and sensitive data
-
+```
 ## Prerequisites
 - Terraform installed
 - AWS CLI installed and configured via aws configure
