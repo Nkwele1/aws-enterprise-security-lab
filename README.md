@@ -192,10 +192,6 @@ merging.
 - Bash scripting
 
 ## Repository Structure
-<<<<<<< HEAD
-```aws-enterprise-security-lab/
-=======
-
 ```
 aws-enterprise-security-lab/
 >>>>>>> 1985235de44a74531c49d100cb7b125eb4d05a3c
